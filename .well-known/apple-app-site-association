@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["22AZJMNDDG.com.tlesaout.cruvia"],
+        "components": [
+          { "/": "/auth/confirm*" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["22AZJMNDDG.com.tlesaout.cruvia"]
+  }
+}
