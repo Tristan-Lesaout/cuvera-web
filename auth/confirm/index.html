@@ -46,7 +46,7 @@
 </head>
 <body>
 <main class="card" id="card">
-  <div class="brand">Cuvera</div>
+  <div class="brand" id="brand">Cuvera</div>
 
   <!-- Gate: explicit action required; nothing is verified on page load. -->
   <section id="state-gate" class="hidden">
@@ -83,13 +83,39 @@
   </section>
 </main>
 
+<script id="auth-project-config">
+  // Which Supabase project this page verifies a token against. Chosen ONLY by
+  // the explicit `env` query parameter that the email template writes into
+  // the link — never sniffed from the token, the referrer, or the hostname:
+  //   (no env)  or env=production  -> Cuvera (production)
+  //   env=staging                  -> Cuvera Staging (QA project)
+  //   anything else                -> no project; the page makes no request
+  // Both keys are public client keys — safe to embed by design (Row Level
+  // Security applies). Covered by apps/mobile/scripts/confirmPage.test.mjs.
+  window.CuveraAuthProjects = {
+    production: {
+      url: "https://ayrfyrffvoxcdtmpmhdh.supabase.co",
+      apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5cmZ5cmZmdm94Y2R0bXBtaGRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2MzczMTYsImV4cCI6MjA4NjIxMzMxNn0.x-9J8aCXOCQ-mFhsmW6BtSye_XagLcNstmdkPlCw9fI",
+      label: null
+    },
+    staging: {
+      url: "https://ygtmedtjakgongohosvp.supabase.co",
+      apiKey: "sb_publishable_eTOFDFmTY6MhpM3qvX8l9w_QLCzVqtV",
+      label: "Cuvera Staging"
+    }
+  };
+  window.resolveCuveraAuthProject = function (envValue) {
+    if (envValue === null || envValue === undefined || envValue === "production") {
+      return window.CuveraAuthProjects.production;
+    }
+    if (envValue === "staging") return window.CuveraAuthProjects.staging;
+    return null;
+  };
+</script>
 <script>
 (function () {
   "use strict";
 
-  var SUPABASE_URL = "https://ayrfyrffvoxcdtmpmhdh.supabase.co";
-  // Public anon key — safe to embed by design (Row Level Security applies).
-  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5cmZ5cmZmdm94Y2R0bXBtaGRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2MzczMTYsImV4cCI6MjA4NjIxMzMxNn0.x-9J8aCXOCQ-mFhsmW6BtSye_XagLcNstmdkPlCw9fI";
   var MIN_PASSWORD_LENGTH = 6; // matches the mobile app
 
   var fr = (navigator.language || "").toLowerCase().indexOf("fr") === 0;
@@ -126,6 +152,7 @@
     errTitleInvalid: "Lien invalide",
     errMsgInvalid: "Ce lien n'a pas pu être vérifié.",
     errBodyInvalid: "Demandez un nouveau lien depuis l'application Cuvera.",
+    errMsgEnv: "Ce lien désigne un environnement Cuvera inconnu.",
     errTitleNetwork: "Problème de connexion",
     errMsgNetwork: "Impossible de joindre le serveur.",
     errBodyNetwork: "Vérifiez votre connexion internet puis réessayez.",
@@ -163,6 +190,7 @@
     errTitleInvalid: "Invalid link",
     errMsgInvalid: "This link could not be verified.",
     errBodyInvalid: "Request a new link from the Cuvera app.",
+    errMsgEnv: "This link points to an unknown Cuvera environment.",
     errTitleNetwork: "Connection problem",
     errMsgNetwork: "We couldn't reach the server.",
     errBodyNetwork: "Check your internet connection and try again.",
@@ -174,6 +202,7 @@
   var params = new URLSearchParams(window.location.search);
   var tokenHash = params.get("token_hash") || "";
   var type = params.get("type") || "";
+  var project = window.resolveCuveraAuthProject(params.get("env"));
   var accessToken = null; // recovery session token, kept in memory only
 
   var states = ["gate", "busy", "password", "done", "error"];
@@ -192,6 +221,7 @@
       body = type === "recovery" ? T.errBodyExpiredRecovery : T.errBodyExpiredSignup;
     }
     else if (kind === "network") { title = T.errTitleNetwork; msg = T.errMsgNetwork; body = T.errBodyNetwork; retry = true; }
+    else if (kind === "env") { title = T.errTitleInvalid; msg = T.errMsgEnv; body = T.errBodyInvalid; }
     else { title = T.errTitleInvalid; msg = T.errMsgInvalid; body = T.errBodyInvalid; }
     el("err-title").textContent = title;
     el("err-msg").textContent = msg;
@@ -211,10 +241,10 @@
   function api(path, options) {
     options = options || {};
     options.headers = Object.assign(
-      { "apikey": SUPABASE_ANON_KEY, "Content-Type": "application/json" },
+      { "apikey": project.apiKey, "Content-Type": "application/json" },
       options.headers || {}
     );
-    return fetch(SUPABASE_URL + "/auth/v1" + path, options);
+    return fetch(project.url + "/auth/v1" + path, options);
   }
 
   function classifyAuthError(status, data) {
@@ -325,6 +355,11 @@
       showError("missing");
       return;
     }
+    if (!project) {
+      showError("env");
+      return;
+    }
+    if (project.label) el("brand").textContent = project.label;
     if (type === "signup") {
       el("gate-title").textContent = T.gateTitleSignup;
       el("gate-body").textContent = T.gateBodySignup;
