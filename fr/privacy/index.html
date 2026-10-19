@@ -108,8 +108,11 @@
   nos serveurs, notre hébergeur Supabase enregistre automatiquement des journaux techniques :
   votre adresse IP, le type d'appareil (user agent), le compte à l'origine de la requête, la
   requête, son résultat et les éventuelles erreurs. Les connexions sont journalisées de la même
-  manière pour la sécurité. Nous utilisons ces journaux pour sécuriser le service, prévenir les
-  abus et corriger les problèmes.</p>
+  manière pour la sécurité. Tant que vous êtes connecté, l'enregistrement de votre session de
+  connexion — y compris l'adresse IP et le type d'appareil depuis lesquels elle a été ouverte — est
+  également conservé avec votre compte, jusqu'à votre déconnexion ou la fin de la session. Nous
+  utilisons ces journaux et enregistrements pour sécuriser le service, prévenir les abus et
+  corriger les problèmes.</p>
   <p><strong>Notifications (facultatives).</strong> Les rappels sont programmés sur votre
   appareil : un rappel le soir même pour un repas prévu, une question le lendemain sur un accord,
   et de temps en temps des idées tirées de votre cave — par exemple lorsqu'une bouteille pourrait
@@ -145,8 +148,8 @@
     <li><strong>Supabase</strong> — hébergement, authentification, base de données, stockage, et
     journaux techniques et de sécurité. Notre projet est hébergé dans l'Union européenne (Irlande,
     <code>eu-west-1</code>).</li>
-    <li><strong>OpenAI</strong> — traitement de texte et d'images par IA. Le traitement a lieu aux
-    États-Unis ; les transferts décrits à la section 7 s'appliquent.</li>
+    <li><strong>OpenAI</strong> — traitement de texte et d'images par IA. Le traitement peut avoir
+    lieu aux États-Unis ; voir la section 7.</li>
     <li><strong>Resend</strong> — e-mails transactionnels uniquement : confirmation de compte et
     réinitialisation du mot de passe, envoyés depuis auth@cuvera.app.</li>
     <li><strong>Apple</strong> — « Se connecter avec Apple », si vous l'utilisez, et les services de
@@ -156,11 +159,15 @@
 
   <h2>7. Transferts internationaux</h2>
   <p>Votre compte et vos contenus sont conservés dans l'Union européenne. Lorsque vous utilisez une
-  fonctionnalité d'IA, le texte ou la photo d'étiquette nécessaire à la requête est transféré aux
-  États-Unis pour être traité par OpenAI. Ces transferts reposent sur les clauses contractuelles
-  types de la Commission européenne. Notre prestataire d'e-mails, Resend, peut également traiter
-  votre adresse e-mail hors de l'Union européenne pour acheminer les e-mails liés à votre
-  compte.</p>
+  fonctionnalité d'IA, le texte ou la photo d'étiquette nécessaire à la requête est traité par
+  OpenAI. Selon les conditions standard de traitement des données d'OpenAI, qui s'appliquent à
+  notre utilisation de son API, les données provenant de l'Espace économique européen et de la
+  Suisse sont prises en charge par OpenAI Ireland Ltd. ; lorsqu'OpenAI les transfère hors de ces
+  pays, notamment vers les États-Unis, il s'appuie sur les clauses contractuelles types de la
+  Commission européenne ou sur une décision d'adéquation. Notre prestataire d'e-mails, Resend,
+  traite votre adresse e-mail et les e-mails liés à votre compte principalement aux États-Unis ;
+  ses conditions standard de traitement des données, qui s'appliquent à notre compte, intègrent
+  les clauses contractuelles types.</p>
 
   <h2>8. Bases légales</h2>
   <ul>
@@ -175,26 +182,34 @@
     imports de tableur, accords enregistrés, région, préférences et activité dans l'application —
     sont conservés jusqu'à la suppression de votre compte, ou jusqu'à ce que vous les effaciez dans
     l'application lorsqu'elle le permet.</li>
-    <li><strong>Les journaux techniques et de sécurité</strong> tenus par Supabase sont conservés
-    7 jours.</li>
+    <li><strong>Les journaux techniques et de sécurité</strong> du service de journalisation de
+    Supabase sont conservés 7 jours avec notre offre actuelle. Les enregistrements de session de
+    connexion (section 3) sont conservés tant que la session dure.</li>
+    <li><strong>Les sauvegardes de la base de données</strong> sont quotidiennes et conservées
+    7 jours : des données supprimées peuvent donc subsister dans une sauvegarde pendant cette
+    durée au plus.</li>
     <li><strong>Les requêtes d'IA</strong>, y compris les photos d'étiquettes, peuvent être
     conservées par OpenAI jusqu'à 30 jours (section 5). Cuvera ne conserve jamais les photos
     d'étiquettes ni les messages à Camille.</li>
     <li><strong>Les e-mails liés à votre compte</strong> et leurs journaux d'envoi sont conservés
-    par Resend jusqu'à 30 jours.</li>
+    par Resend 30 jours avec notre offre actuelle.</li>
   </ul>
 
   <h2>10. Suppression de votre compte</h2>
   <p>Vous pouvez supprimer votre compte à tout moment dans l'application :
   <strong>Réglages → Compte → Supprimer le compte</strong>. Cette action supprime définitivement
-  votre compte et vos données personnelles, y compris votre cave, vos dégustations, vos imports,
-  vos accords enregistrés et vos préférences. Si vous vous êtes connecté avec Apple, Cuvera
+  votre compte et les données personnelles qui y sont rattachées : votre cave, vos dégustations et
+  sessions de dégustation, vos imports de tableur (y compris les lignes d'origine), vos accords
+  enregistrés, votre région, vos préférences, votre activité dans l'application et vos
+  enregistrements de connexion. Si vous vous êtes connecté avec Apple, Cuvera
   demande également à Apple de révoquer l'autorisation de l'application. Si cette révocation
   échoue, l'application vous en informe et vous explique comment retirer Cuvera vous-même dans
   les réglages de votre identifiant Apple — nous n'affirmons jamais qu'elle a réussi si ce n'est
   pas le cas. Les copies figurant dans les journaux de courte durée de nos prestataires
-  (section 9) ne sont pas supprimées par anticipation ; elles expirent selon leur calendrier
-  habituel.</p>
+  et dans les sauvegardes de la base de données (section 9) ne sont pas supprimées par
+  anticipation ; elles expirent selon leur calendrier habituel. Le cache partagé d'images de
+  bouteilles, qui ne contient que le nom d'un vin, son producteur et le lien de l'image et n'est
+  rattaché à aucun compte, est conservé.</p>
 
   <h2>11. Vos droits</h2>
   <p>Sous réserve du droit applicable, vous disposez des droits d'accès, de rectification,

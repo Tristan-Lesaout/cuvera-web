@@ -101,8 +101,10 @@
   <p><strong>Server and security logs.</strong> When the app talks to our servers, our hosting
   provider Supabase automatically records technical logs: your IP address, device type (user
   agent), the account making the request, the request, its result and any error. Sign-in events
-  are logged for security in the same way. We use these logs to keep the service secure, prevent
-  abuse and fix problems.</p>
+  are logged for security in the same way. While you are signed in, the record of your sign-in
+  session — including the IP address and device type it was started from — is also kept with your
+  account until you sign out or the session ends. We use these logs and records to keep the
+  service secure, prevent abuse and fix problems.</p>
   <p><strong>Notifications (optional).</strong> Reminders are scheduled on your device: a reminder
   the same evening for a meal you planned, a next-day question about a pairing, and occasional
   ideas from your collection — for example when a bottle may be entering its estimated drinking
@@ -132,8 +134,8 @@
   <ul>
     <li><strong>Supabase</strong> — hosting, authentication, database, storage, and technical and
     security logs. Our project is hosted in the European Union (Ireland, <code>eu-west-1</code>).</li>
-    <li><strong>OpenAI</strong> — AI text and image understanding. Processing takes place in the
-    United States, so the transfers described in section 7 apply.</li>
+    <li><strong>OpenAI</strong> — AI text and image understanding. Processing may take place in the
+    United States; see section 7.</li>
     <li><strong>Resend</strong> — transactional email only: account confirmation and password reset,
     sent from auth@cuvera.app.</li>
     <li><strong>Apple</strong> — Sign in with Apple, if you use it, and the iOS location services
@@ -142,10 +144,13 @@
 
   <h2>7. International transfers</h2>
   <p>Your account and content are stored in the European Union. When you use an AI feature, the
-  text or label photo needed for that request is transferred to the United States for processing
-  by OpenAI. These transfers rely on the European Commission's Standard Contractual Clauses. Our
-  email provider, Resend, may also process your email address outside the European Union to
-  deliver account emails.</p>
+  text or label photo needed for that request is processed by OpenAI. Under OpenAI's standard data
+  processing terms, which apply to our use of its API, data from the European Economic Area and
+  Switzerland is handled by OpenAI Ireland Ltd.; where OpenAI transfers it outside those countries,
+  including to the United States, it relies on the European Commission's Standard Contractual
+  Clauses or an adequacy decision. Our email provider, Resend, processes your email address and
+  account emails mainly in the United States; its standard data processing terms, which apply to
+  our account, incorporate the Standard Contractual Clauses.</p>
 
   <h2>8. Legal bases</h2>
   <ul>
@@ -159,21 +164,28 @@
     <li><strong>Your account and the content stored with it</strong> — collection, tastings,
     spreadsheet imports, saved pairings, wine area, preferences and app activity — are kept until
     you delete your account, or until you clear them in the app where it offers that.</li>
-    <li><strong>Server and security logs</strong> held by Supabase are kept for 7 days.</li>
+    <li><strong>Technical and security logs</strong> in Supabase's logging service are kept for
+    7 days on our current plan. Sign-in session records (section 3) are kept while the session
+    lasts.</li>
+    <li><strong>Database backups</strong> are taken daily and kept for 7 days, so deleted data can
+    remain in a backup for up to that long.</li>
     <li><strong>AI requests</strong>, including label photos, may be kept by OpenAI for up to
     30 days (section 5). Cuvera itself never stores label photos or Camille messages.</li>
-    <li><strong>Account emails</strong> and their delivery records are kept by Resend for up to
-    30 days.</li>
+    <li><strong>Account emails</strong> and their delivery logs are kept by Resend for 30 days on
+    our current plan.</li>
   </ul>
 
   <h2>10. Deleting your account</h2>
   <p>You can delete your account at any time in the app: <strong>Settings → Account → Delete
-  Account</strong>. This permanently deletes your account and your personal data, including your
-  collection, tastings, imports, saved pairings and preferences. If you signed in with Apple,
+  Account</strong>. This permanently deletes your account and the personal data stored with it: your
+  collection, tastings and tasting sessions, spreadsheet imports (including the original rows),
+  saved pairings, wine area, preferences, app activity and sign-in records. If you signed in with Apple,
   Cuvera also asks Apple to revoke the app's authorisation. If that revocation cannot be
   completed, the app tells you so and explains how to remove Cuvera yourself under Apple ID
-  settings — we never claim it succeeded when it did not. Copies held in our providers'
-  short-lived logs (section 9) are not deleted early; they expire on their normal schedule.</p>
+  settings — we never claim it succeeded when it did not. Copies in our providers'
+  short-lived logs and in database backups (section 9) are not deleted early; they expire on
+  their normal schedule. The shared bottle-image cache, which holds only a wine's name, producer
+  and image link and is not linked to any account, is kept.</p>
 
   <h2>11. Your rights</h2>
   <p>Subject to applicable law you may request access to your data, correction, deletion,
