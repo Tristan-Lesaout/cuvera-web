@@ -8,18 +8,55 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #faf8f5; color: #1a1a1a;
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    padding: 24px; text-align: center;
+    background: #FBF5ED; color: #1a1a1a;
+    padding: 32px 24px 64px; line-height: 1.6; font-size: 16px;
   }
-  .brand { font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #8c2f39; margin-bottom: 10px; }
-  p { color: #555; font-size: 15px; }
+  main { max-width: 680px; margin: 0 auto; }
+  .brand { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #621D20; }
+  .brand a { color: inherit; text-decoration: none; }
+  header { border-bottom: 1px solid #e4dccf; padding-bottom: 16px; margin-bottom: 32px;
+           display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .lang a { color: #5C6B50; text-decoration: none; font-size: 14px; }
+  .lang a:hover { text-decoration: underline; }
+  h1 { font-size: 26px; line-height: 1.3; margin-bottom: 8px; font-weight: 600; }
+  h2 { font-size: 18px; margin: 32px 0 8px; font-weight: 600; }
+  p, li { color: #333; }
+  p { margin-bottom: 12px; }
+  ul { margin: 0 0 12px 22px; }
+  li { margin-bottom: 6px; }
+  .updated { color: #6b6b6b; font-size: 14px; margin-bottom: 8px; }
+  a { color: #5C6B50; }
+  footer { border-top: 1px solid #e4dccf; margin-top: 48px; padding-top: 16px; font-size: 14px; color: #6b6b6b; }
+  footer a { margin-right: 14px; }
+  code { background: #f0e9dd; padding: 1px 5px; border-radius: 3px; font-size: 14px; }
+
+  body { display: flex; align-items: center; min-height: 100vh; }
+  main { text-align: center; }
+  .tagline { font-size: 18px; color: #444; margin: 12px 0 32px; }
+  .links a { display: inline-block; margin: 0 10px 10px; }
+  .note { font-size: 13px; color: #6b6b6b; margin-top: 28px; }
 </style>
 </head>
 <body>
-  <div>
-    <div class="brand">Cuvera</div>
-    <p>Coming soon.</p>
+<main>
+  <div class="brand">Cuvera</div>
+  <p class="tagline">An AI wine companion — choose, understand and remember wine.</p>
+
+  <div class="links">
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Use</a>
+    <a href="/support">Support</a>
   </div>
+  <div class="links">
+    <a href="/fr/privacy">Politique de confidentialité</a>
+    <a href="/fr/terms">Conditions d'utilisation</a>
+    <a href="/fr/support">Assistance</a>
+  </div>
+
+  <p class="note">
+    Contact: <a href="mailto:support@cuvera.app">support@cuvera.app</a><br>
+    For adults of legal drinking age. Please enjoy wine in moderation.
+  </p>
+</main>
 </body>
 </html>
