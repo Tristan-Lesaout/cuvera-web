@@ -1,0 +1,12 @@
+{
+ "_note": "Map projection: y = 15 + (38.62 - lat) * 380, x = 120 + (lon + 122.60) * 298",
+ "h": 260,
+ "projection": {"x0": 120, "lon0": -122.60, "kx": 298, "y0": 15, "lat0": 38.62, "ky": 380},
+ "lineFiles": ["napa_coast.json", "napa_river_any.json"], "waterFiles": ["napa_water.json"],
+ "includeAreaIds": ["w127587348", "r14213695", "w4897390"],
+ "_areas": "Napa River tidal reaches: through Napa, below Napa, and down to Mare Island Strait (sloughs excluded)",
+ "eraseRects": [[190, 180, 210, 194], [199, 194, 211, 203]],
+ "_erase": "Side lagoon and sloughs west of the river above Vallejo (part of OSM way 4897390): real, but noise at map scale",
+ "rivers": ["Napa River"],
+ "seeds": [{"at": [180, 236], "color": "#D6DEE3", "what": "San Pablo Bay"}]
+}

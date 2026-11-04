@@ -1,0 +1,51 @@
+{
+ "_note": "Map projection: true proportions at 47.81 N. x = (lon - 3.70) * 1545, y = (47.872 - lat) * 2300. Chablis town (47.815 N, 3.798 E) -> (151, 131).",
+ "h": 260,
+ "projection": {
+  "x0": 0,
+  "lon0": 3.7,
+  "kx": 1545,
+  "y0": 0,
+  "lat0": 47.872,
+  "ky": 2300
+ },
+ "lineFiles": [
+  "chablis_rivers.json"
+ ],
+ "riverGroups": [
+  {
+   "names": [
+    "Serein"
+   ],
+   "width": 4.0
+  }
+ ],
+ "seeds": [],
+ "tintAreas": [
+  {
+   "what": "Petit Chablis (INAO)",
+   "file": "chablis_aoc.json",
+   "app": "^Petit Chablis$",
+   "color": "#ECE5D8",
+   "tolerance": 0.25,
+   "close": 2.0,
+   "grow": 0.0
+  },
+  {
+   "what": "Chablis Premier Cru (INAO)",
+   "file": "chablis_aoc.json",
+   "app": "^Chablis$",
+   "denom": "premier cru",
+   "color": "#E3D3CF",
+   "tolerance": 0.25
+  },
+  {
+   "what": "Chablis Grand Cru (INAO)",
+   "file": "chablis_aoc.json",
+   "app": "^Chablis Grand Cru$",
+   "color": "#D6BFB7",
+   "tolerance": 0.25
+  }
+ ],
+ "_river": "The Serein from IGN BD TOPO (troncon_hydrographique, main flowing network; Licence Ouverte 2.0), reduced to one line by ign_mainline.py (shortest path end to end). OSM Overpass was unavailable on 2026-11-04."
+}

@@ -1,0 +1,16 @@
+{
+ "_note": "Map projection: y = 15 + (42.70 - lat) * 325, x = 20 + (lon + 2.95) * 240",
+ "h": 220,
+ "projection": {"x0": 20, "lon0": -2.95, "kx": 240, "y0": 15, "lat0": 42.70, "ky": 325},
+ "lineFiles": ["rioja_rivers.json", "rioja_ebro.json"],
+ "riverPatterns": {"Ebro": "^(Río |Rio )?Ebro( / Ebro [Ii]baia)?$|^Ebro [Ii]baia$"},
+ "_ebro": "Through Álava and Navarra the Ebro's ways carry Spanish / Basque names (\"Río Ebro / Ebro Ibaia\").",
+ "exactRiverNames": true,
+ "minLineLength": 12,
+ "riverGroups": [
+  {"names": ["Ebro"], "width": 3.6, "tolerance": 1.2},
+  {"names": ["Tirón", "Oja", "Najerilla", "Iregua", "Leza", "Jubera", "Cidacos", "Alhama"], "width": 2.0}
+ ],
+ "_rivers": "The Ebro and the seven Rioja valleys that run north from the Sierra de la Demanda / Cameros (Oja-Tirón, Najerilla, Iregua, Leza, Jubera, Cidacos, Alhama). Ega and Zadorra are left out: outside the lesson.",
+ "seeds": []
+}

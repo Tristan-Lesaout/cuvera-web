@@ -1,0 +1,8 @@
+{
+ "_note": "Map projection: y = 128 + (45.00 - lat) * 287, x = 182 + (lon + 0.553) * 203",
+ "h": 280,
+ "projection": {"x0": 182, "lon0": -0.553, "kx": 203, "y0": 128, "lat0": 45.00, "ky": 287},
+ "lineFiles": ["bordeaux_osm.json"], "waterFiles": ["bordeaux_water.json"],
+ "rivers": ["Garonne", "Dordogne"],
+ "seeds": [{"at": [6, 140], "color": "#D6DEE3", "what": "Atlantic"}, {"at": [126, 8], "color": "#A9BCC8", "what": "Gironde estuary"}]
+}

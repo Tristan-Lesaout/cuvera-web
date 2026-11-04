@@ -1,0 +1,12 @@
+{
+ "_note": "Map projection: y = 20 + (-34.42 - lat) * 800, x = 70 + (lon - 138.85) * 659",
+ "h": 260,
+ "projection": {"x0": 70, "lon0": 138.85, "kx": 659, "y0": 20, "lat0": -34.42, "ky": 800},
+ "lineFiles": ["barossa_rivers.json"],
+ "riverGroups": [{"names": ["North Para"], "width": 3.4}],
+ "seeds": [],
+ "tintAreas": [
+  {"what": "Barossa Valley GI region (Wine Australia, CC BY 4.0)", "file": "gi_regions.geojson", "properties": {"GI_NAME": "Barossa Valley"}, "color": "#E3D3CF", "tolerance": 0.2},
+  {"what": "Eden Valley GI region (Wine Australia, CC BY 4.0)", "file": "gi_regions.geojson", "properties": {"GI_NAME": "Eden Valley"}, "color": "#D8E4D8", "tolerance": 0.2}
+ ]
+}

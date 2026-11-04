@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Cuvera's maps are made — Cuvera</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #FBF5ED; color: #1a1a1a;
+    padding: 32px 24px 64px; line-height: 1.6; font-size: 16px;
+  }
+  main { max-width: 680px; margin: 0 auto; }
+  .brand { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #621D20; }
+  .brand a { color: inherit; text-decoration: none; }
+  header { border-bottom: 1px solid #e4dccf; padding-bottom: 16px; margin-bottom: 32px;
+           display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .lang a { color: #5C6B50; text-decoration: none; font-size: 14px; }
+  .lang a:hover { text-decoration: underline; }
+  h1 { font-size: 26px; line-height: 1.3; margin-bottom: 8px; font-weight: 600; }
+  h2 { font-size: 18px; margin: 32px 0 8px; font-weight: 600; }
+  p, li { color: #333; }
+  p { margin-bottom: 12px; }
+  ul { margin: 0 0 12px 22px; }
+  li { margin-bottom: 6px; }
+  .updated { color: #6b6b6b; font-size: 14px; margin-bottom: 8px; }
+  a { color: #5C6B50; }
+  footer { border-top: 1px solid #e4dccf; margin-top: 48px; padding-top: 16px; font-size: 14px; color: #6b6b6b; }
+  footer a { margin-right: 14px; }
+  code { background: #f0e9dd; padding: 1px 5px; border-radius: 3px; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand"><a href="/">Cuvera</a></div>
+    <div class="lang"><a href="/fr/maps/">Français</a></div>
+  </header>
+
+  <h1>How Cuvera's wine-region maps are made</h1>
+  <p class="updated">Last updated: 4 November 2026</p>
+
+  <p>The Explore lessons in Cuvera include six simplified maps: Bordeaux, Napa Valley, Rioja, Burgundy,
+  Chablis and the Barossa Valley. Each map is a picture drawn from open geographic data, with the place
+  names added by the app. The maps are simplified for learning. They are not official or survey maps, and
+  they do not imply any endorsement by the data producers.</p>
+  <p>This page describes the data and the method, as the Open Database License (section 4.6) asks of maps
+  made from OpenStreetMap data. Cuvera does not publish the intermediate data.</p>
+
+  <h2>Data sources</h2>
+  <ul>
+    <li><strong>Coastlines, rivers, river areas, towns and peaks</strong> (Bordeaux, Napa Valley, Rioja,
+      Burgundy, Barossa Valley): © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+      contributors, available under the <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Database
+      License (ODbL)</a>.</li>
+    <li><strong>Wine appellation areas</strong> (Burgundy, Chablis): INAO, <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao"><em>Délimitation
+      parcellaire des AOC viticoles</em></a>, update of 2 November 2026, Licence Ouverte 1.0.</li>
+    <li><strong>The Serein river</strong> (Chablis): IGN, <a href="https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_BD-TOPO">BD TOPO®</a>
+      (hydrographic sections of the Serein, last updated 21 August 2025), Licence Ouverte 2.0.</li>
+    <li><strong>Barossa Valley and Eden Valley boundaries</strong>: Geographical Indications of Australia,
+      © Wine Australia (<a href="https://www.arcgis.com/home/item.html?id=ede7ffb0e73b4504a5ed613965b11e0f">2022 v1 edition</a>, since superseded),
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, simplified by Cuvera.</li>
+    <li><strong>American Viticultural Areas</strong> (Napa Valley, used only to check label placement, not
+      drawn): UC Davis Library AVA project, CC0.</li>
+  </ul>
+
+  <h2>Method</h2>
+  <ol style="margin: 0 0 12px 22px;">
+    <li><strong>Download</strong> each region's data with the queries in <code>fetch_&lt;region&gt;.sh</code>:
+      OpenStreetMap through the Overpass API; the national INAO shapefile from data.gouv.fr
+      (<code>fetch_inao.sh</code>); the IGN hydrography through the Géoplateforme WFS service; the Wine
+      Australia regions from their open-data release.</li>
+    <li><strong>Extract</strong> appellation areas from the INAO shapefile (<code>inao_extract.py</code>):
+      filter by appellation and commune, convert from Lambert-93 to latitude and longitude, simplify
+      (Douglas–Peucker, 8 to 60 m).</li>
+    <li><strong>Reduce</strong> the IGN river network to a single line (<code>ign_mainline.py</code>): the
+      shortest path through the main flowing network.</li>
+    <li><strong>Project</strong> every layer onto the map's own grid, 340 units wide, with the linear formula
+      in <code>&lt;region&gt;.config.json</code>: <code>x = x0 + (lon − lon0) · kx</code>,
+      <code>y = y0 + (lat0 − lat) · ky</code> (<code>build_map.py</code>).</li>
+    <li><strong>Generalise</strong>: chain each river's ways into continuous lines, simplify them
+      (Douglas–Peucker, 0.25 to 1.2 grid units) and smooth them (two Chaikin passes); keep only the water
+      areas of the main rivers; drop short side channels; merge appellation parcels into zones (dilate then
+      erode by 3 to 4 grid units, soft edge); mask the few features that are too small to read, as listed
+      in each configuration.</li>
+    <li><strong>Render</strong> the base image at four times the grid (<code>rendermap.swift</code>, macOS
+      CoreGraphics): the sea is flood-filled from seed points bounded by the coastline; rivers and
+      appellation tints are drawn in Cuvera's palette.</li>
+  </ol>
+  <p>The configuration files list every parameter, filter, seed point and mask used for each map. Running
+  the steps above with them reproduces the base images.</p>
+
+  <h2>How to run it</h2>
+  <p>Requirements: macOS with the Xcode command-line tools (for <code>swiftc</code>), Python 3, <code>curl</code> and
+  <code>unzip</code>. Put the files below in one folder, then for each region (Bordeaux shown):</p>
+  <p><code>sh fetch_bordeaux.sh data</code><br>
+  <code>python3 build_map.py bordeaux.config.json data scene.json</code><br>
+  <code>swiftc -O rendermap.swift -o rendermap &amp;&amp; ./rendermap scene.json bordeaux.png</code></p>
+  <p>With the data as published on 4 November 2026, these steps reproduce Cuvera's base images exactly. OpenStreetMap
+  is edited continuously, so later downloads can differ slightly; the Napa Valley configuration also names three
+  OpenStreetMap water areas by their identifiers.</p>
+
+  <h2>Files</h2>
+  <ul>
+    <li>Scripts: <a href="method/build_map.py">build_map.py</a>, <a href="method/rendermap.swift">rendermap.swift</a>,
+      <a href="method/inao_extract.py">inao_extract.py</a>, <a href="method/ign_mainline.py">ign_mainline.py</a></li>
+    <li>Downloads: <a href="method/fetch_bordeaux.sh">Bordeaux</a>, <a href="method/fetch_napa.sh">Napa Valley</a>,
+      <a href="method/fetch_rioja.sh">Rioja</a>, <a href="method/fetch_burgundy.sh">Burgundy</a>,
+      <a href="method/fetch_chablis.sh">Chablis</a>, <a href="method/fetch_barossa.sh">Barossa Valley</a>,
+      <a href="method/fetch_inao.sh">INAO file</a></li>
+    <li>Configurations: <a href="method/bordeaux.config.json">Bordeaux</a>, <a href="method/napa.config.json">Napa Valley</a>,
+      <a href="method/rioja.config.json">Rioja</a>, <a href="method/burgundy.config.json">Burgundy</a>,
+      <a href="method/chablis.config.json">Chablis</a>, <a href="method/barossa.config.json">Barossa Valley</a></li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Questions or corrections: <a href="mailto:support@cuvera.app">support@cuvera.app</a>.</p>
+
+  <footer>
+    <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><a href="/">Home</a>
+  </footer>
+</main>
+</body>
+</html>

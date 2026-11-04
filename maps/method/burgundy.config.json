@@ -1,0 +1,87 @@
+{
+ "_note": "Map projection (east-west stretched 1.6x, as today): y = 12 + (47.85 - lat) * 137, x = 30 + (lon - 3.70) * 150",
+ "h": 280,
+ "projection": {
+  "x0": 30,
+  "lon0": 3.7,
+  "kx": 150,
+  "y0": 12,
+  "lat0": 47.85,
+  "ky": 137
+ },
+ "lineFiles": [
+  "burgundy_rivers.json"
+ ],
+ "exactRiverNames": true,
+ "riverGroups": [
+  {
+   "names": [
+    "Saône"
+   ],
+   "width": 3.6
+  }
+ ],
+ "seeds": [],
+ "tintAreas": [
+  {
+   "what": "Côte de Nuits: village, premier and grand cru AOCs in Côte-d'Or north of Ladoix (INAO)",
+   "file": "burgundy_aoc.json",
+   "insee": "^21",
+   "appExclude": "^(Bourgogne|Côte de Beaune)",
+   "latMin": 47.075,
+   "color": "#DFC9C3",
+   "tolerance": 0.12,
+   "close": 3.0,
+   "grow": 1.2
+  },
+  {
+   "what": "Côte de Beaune: village, premier and grand cru AOCs from Ladoix to Santenay, and Maranges (INAO)",
+   "file": "burgundy_aoc.json",
+   "insee": "^(21|71)",
+   "app": "^(?!Bourgogne)",
+   "appExclude": "^(Bourgogne|Bouzeron|Rully|Mercurey|Givry|Montagny|Mâcon|Pouilly|Saint-Véran|Viré|Côte de Nuits)",
+   "latMax": 47.075,
+   "latMin": 46.8,
+   "color": "#D6BDB4",
+   "tolerance": 0.12,
+   "close": 3.0,
+   "grow": 1.2
+  },
+  {
+   "what": "Côte Chalonnaise (INAO)",
+   "file": "burgundy_aoc.json",
+   "app": "^(Bouzeron|Rully|Mercurey|Givry|Montagny)$",
+   "color": "#E6D9C3",
+   "tolerance": 0.12,
+   "close": 3.0,
+   "grow": 1.2
+  },
+  {
+   "what": "Mâconnais (INAO)",
+   "file": "burgundy_aoc.json",
+   "app": "^(Mâcon|Pouilly-Fuissé|Pouilly-Loché|Pouilly-Vinzelles|Saint-Véran|Viré-Clessé)$",
+   "color": "#CFDDCF",
+   "tolerance": 0.12,
+   "close": 3.0,
+   "grow": 1.2
+  },
+  {
+   "what": "Beaujolais and its crus (INAO)",
+   "file": "burgundy_aoc.json",
+   "app": "^(Beaujolais|Brouilly|Côte de Brouilly|Chénas|Chiroubles|Fleurie|Juliénas|Morgon|Moulin-à-Vent|Régnié|Saint-Amour)$",
+   "color": "#E5D2BC",
+   "tolerance": 0.12,
+   "close": 3.0,
+   "grow": 1.2
+  },
+  {
+   "what": "Chablis (INAO)",
+   "file": "chablis_aoc.json",
+   "app": "^(Chablis|Chablis Grand Cru)$",
+   "color": "#CFDDCF",
+   "tolerance": 0.12,
+   "close": 3.0,
+   "grow": 1.2
+  }
+ ]
+}
