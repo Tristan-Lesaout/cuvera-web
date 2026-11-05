@@ -39,13 +39,13 @@
   </header>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 20 October 2026</p>
+  <p class="updated">Last updated: 5 November 2026</p>
 
 
   <h2>1. Who we are</h2>
   <p>Cuvera is a wine education and food-pairing app for iPhone. It is published by
   <strong>Tristan Le Saout</strong>, acting in a personal capacity and not through a company.
-  Cuvera is currently developed and operated from Paris, France. Tristan Le Saout is the
+  Tristan Le Saout is the
   <strong>data controller</strong> for your personal data.</p>
   <p><strong>Correspondence address</strong> (postal correspondence only)<br>
   411 SS4, PO Box 37089<br>
@@ -78,8 +78,8 @@
   the suggested wine with your account, so it can remind you about the meal and later ask
   whether you had it.</p>
   <p><strong>Camille and other AI requests.</strong> Cooking hints, the details of wines you add or
-  ask about, and the messages you send to Camille are sent to our AI provider to produce an
-  answer (see section 5). Cuvera does not store your Camille conversations; they exist only while the
+  ask about, your guided-tasting notes and reflections, and the messages you send to Camille are
+  sent to our AI provider to produce an answer, only once you have agreed (see section 5). Cuvera does not store your Camille conversations; they exist only while the
   screen is open.</p>
   <p><strong>Wine label photos.</strong> When you tap to scan a label, the photo is sent to our
   AI provider to identify the wine. <strong>Cuvera does not store the photo.</strong> Only the
@@ -97,7 +97,7 @@
   with your account so the app and our emails are in the right language. To make the app work,
   we also keep a few records of how you use it with your account: whether you have finished
   onboarding and which tips you have seen, your progress in a guided tasting, how often a
-  reminder has been shown, and hourly counts of AI requests used to apply usage limits.</p>
+  reminder has been shown, and hourly and daily counts of AI requests used to apply usage limits.</p>
   <p><strong>Server and security logs.</strong> When the app talks to our servers, our hosting
   provider Supabase automatically records technical logs: your IP address, device type (user
   agent), the account making the request, the request, its result and any error. Sign-in events
@@ -110,9 +110,13 @@
   ideas from your collection — for example when a bottle may be entering its estimated drinking
   window. The record of which ideas were sent stays on your device. Collection ideas can be
   turned off separately in Settings. Cuvera uses no push tokens and no notification server.</p>
-  <p><strong>Bottle images.</strong> To display a bottle image, Cuvera looks the wine up through a
-  third-party image source and caches the result on our servers so the same wine does not need
-  looking up again. This uses only the wine's name and producer. No photo of yours is ever used.</p>
+  <p><strong>Bottle images.</strong> To display a bottle image, Cuvera's servers search
+  Vivino (vivino.com), a third-party wine website, using only the wine's producer and name, and
+  keep the image link so the same wine does not need looking up again. The wine's other details
+  (vintage, grape, region, appellation, colour) stay on Cuvera's servers, where they are used only
+  to pick the right image. No account information is sent. The photo is then loaded by your device
+  directly from Vivino's image servers, so Vivino receives your device's IP address and the
+  standard information a device sends when it loads an image. No photo of yours is ever used.</p>
 
   <h2>4. What we do not collect</h2>
   <p>No analytics or advertising SDK, no crash-reporting SDK, no contacts, no browsing history,
@@ -122,7 +126,12 @@
 
   <h2>5. AI processing</h2>
   <p>AI features are processed by OpenAI on Cuvera's behalf, through Cuvera's own servers — the
-  app never talks to OpenAI directly. Each request contains only what that answer needs: for
+  app never talks to OpenAI directly. <strong>Nothing is sent to OpenAI until you agree.</strong>
+  The first time you use an AI feature (a pairing, a wine profile, a label scan, a guided tasting
+  or Camille), a short notice names OpenAI and what is shared, and you choose <em>Agree &amp;
+  continue</em> or <em>Not now</em>. You can change your choice at any time in
+  <em>Settings → AI features</em>; while AI features are off, nothing is sent to OpenAI and they
+  are unavailable. Each request contains only what that answer needs: for
   example the dish, the wine, your message to Camille or the label photo. Cuvera does not ask
   OpenAI to store requests or answers for later retrieval. OpenAI may keep the content of
   requests, including label photos, for up to 30 days to detect abuse, and longer only where the
@@ -144,6 +153,8 @@
     confirmation page). GitHub logs visitors' IP addresses for security purposes. The website
     uses no cookies and no analytics.</li>
   </ul>
+  <p>Vivino is not a provider of Cuvera and has no agreement with us; your device loads bottle
+  photos from its servers as described in section 3.</p>
 
   <h2>7. International transfers</h2>
   <p>Your account and content are stored in the European Union. When you use an AI feature, the
@@ -158,7 +169,7 @@
 
   <h2>8. Legal bases</h2>
   <ul>
-    <li><strong>Performance of a contract</strong> — running your account and providing the features you ask for.</li>
+    <li><strong>Performance of a contract</strong> — running your account and providing the features you ask for, including the AI features once you have agreed to their use (section 5).</li>
     <li><strong>Consent</strong> — optional location and optional notifications, each withdrawable at any time.</li>
     <li><strong>Legitimate interests</strong> — keeping the service secure and preventing abuse, including request rate limits and server and security logs.</li>
   </ul>
@@ -181,15 +192,18 @@
 
   <h2>10. Deleting your account</h2>
   <p>You can delete your account at any time in the app: <strong>Settings → Account → Delete
-  Account</strong>. This permanently deletes your account and the personal data stored with it: your
+  account</strong>. This permanently deletes your account and the personal data stored with it: your
   collection, tastings and tasting sessions, spreadsheet imports (including the original rows),
   saved pairings, wine area, preferences, app activity and sign-in records. <span id="apple-revocation">If you signed in with Apple,
-  deleting your account does not currently remove Cuvera from your Apple Account automatically.
-  You can remove it yourself at any time: on your iPhone, open <em>Settings → your name → Sign in
-  with Apple</em>, choose Cuvera and follow the steps to stop using Sign in with Apple.</span> Copies in our providers'
+  the app asks you to confirm with Apple before deleting your account, then asks Apple to remove
+  Cuvera from your Apple Account automatically. If Apple does not confirm the removal, the app
+  tells you, and you can remove it yourself at any time: on your iPhone, open
+  <em>Settings → your name → Sign in with Apple</em>, choose Cuvera, then tap
+  <em>Delete</em> and follow the onscreen steps.</span> Copies in our providers'
   short-lived logs and in database backups (section 9) are not deleted early; they expire on
-  their normal schedule. The shared bottle-image cache, which holds only a wine's name, producer
-  and image link and is not linked to any account, is kept.</p>
+  their normal schedule. The shared bottle-image cache, which holds a wine's identity (name,
+  producer, vintage, grape, colour) and its image link and source, and is not linked to any
+  account, is kept.</p>
 
   <h2>11. Your rights</h2>
   <p>Subject to applicable law you may request access to your data, correction, deletion,

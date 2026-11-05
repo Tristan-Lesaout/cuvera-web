@@ -39,14 +39,13 @@
   </header>
 
   <h1>Politique de confidentialité</h1>
-  <p class="updated">Dernière mise à jour : 20 octobre 2026</p>
+  <p class="updated">Dernière mise à jour : 5 novembre 2026</p>
 
 
   <h2>1. Qui sommes-nous</h2>
   <p>Cuvera est une application iPhone d'éducation au vin et d'accords mets-vins. Elle est
   publiée par <strong>Tristan Le Saout</strong>, agissant à titre personnel et non par
-  l'intermédiaire d'une société. Cuvera est actuellement développée et exploitée depuis Paris, en
-  France. Tristan Le Saout est le <strong>responsable du traitement</strong> de vos données
+  l'intermédiaire d'une société. Tristan Le Saout est le <strong>responsable du traitement</strong> de vos données
   personnelles.</p>
   <p><strong>Adresse de correspondance</strong> (courrier postal uniquement)<br>
   411 SS4, PO Box 37089<br>
@@ -81,8 +80,9 @@
   enregistre le plat et le vin suggéré dans votre compte, afin de pouvoir vous rappeler le repas
   et vous demander ensuite si vous l'avez dégusté.</p>
   <p><strong>Camille et autres requêtes d'IA.</strong> Les indications de cuisson, les informations
-  sur les vins que vous ajoutez ou sur lesquels vous posez une question, et vos messages à Camille
-  sont transmis à notre prestataire d'IA pour produire une réponse (voir section 5). Cuvera ne
+  sur les vins que vous ajoutez ou sur lesquels vous posez une question, vos notes et réflexions
+  de dégustation guidée, et vos messages à Camille sont transmis à notre prestataire d'IA pour
+  produire une réponse, uniquement après votre accord (voir section 5). Cuvera ne
   conserve pas vos conversations avec Camille ; elles n'existent que tant que l'écran est
   ouvert.</p>
   <p><strong>Photos d'étiquettes.</strong> Lorsque vous scannez une étiquette, la photo est
@@ -97,14 +97,14 @@
   uniquement la ville, la région et le pays — ou la ville que vous saisissez vous-même.
   Aujourd'hui, cela ne modifie aucune recommandation : nous l'utilisons pour comprendre où la
   communauté Cuvera se développe et préparer de futures fonctionnalités locales. Vous pouvez la
-  modifier ou l'effacer dans <strong>Réglages → Votre région</strong>, ou retirer l'autorisation
+  modifier ou l'effacer dans <strong>Réglages → Région</strong>, ou retirer l'autorisation
   dans les Réglages iOS.</p>
   <p><strong>Préférences et activité dans l'application.</strong> La langue choisie, conservée sur
   l'appareil et avec votre compte, afin que l'application et nos e-mails soient dans la bonne
   langue. Pour faire fonctionner l'application, nous conservons aussi avec votre compte quelques
   informations sur son utilisation : si vous avez terminé la prise en main et quels conseils vous
   avez vus, votre progression dans une dégustation guidée, le nombre de fois où un rappel a été
-  affiché, et le nombre horaire de requêtes d'IA servant à appliquer des limites d'usage.</p>
+  affiché, et le nombre horaire et quotidien de requêtes d'IA servant à appliquer des limites d'usage.</p>
   <p><strong>Journaux techniques et de sécurité.</strong> Lorsque l'application communique avec
   nos serveurs, notre hébergeur Supabase enregistre automatiquement des journaux techniques :
   votre adresse IP, le type d'appareil (user agent), le compte à l'origine de la requête, la
@@ -120,9 +120,14 @@
   entrer dans sa fenêtre de dégustation estimée. La liste des idées envoyées reste sur votre
   appareil. Les idées de votre cave peuvent être désactivées séparément dans les Réglages. Cuvera
   n'utilise ni jeton de notification push ni serveur de notifications.</p>
-  <p><strong>Images de bouteilles.</strong> Pour afficher l'image d'une bouteille, Cuvera
-  interroge une source d'images tierce et met le résultat en cache sur nos serveurs afin de ne
-  pas répéter la recherche. Seuls le nom du vin et le producteur sont utilisés. Aucune de vos
+  <p><strong>Images de bouteilles.</strong> Pour afficher l'image d'une bouteille, les serveurs de
+  Cuvera recherchent le vin sur Vivino (vivino.com), un site tiers consacré au vin, à partir du
+  seul producteur et du nom du vin, et conservent le lien de l'image afin de ne pas répéter la
+  recherche. Les autres informations du vin (millésime, cépage, région, appellation, couleur)
+  restent sur les serveurs de Cuvera, qui s'en servent uniquement pour choisir la bonne image.
+  Aucune donnée de compte n'est transmise. La photo est ensuite chargée par votre appareil directement depuis les
+  serveurs d'images de Vivino : Vivino reçoit donc l'adresse IP de votre appareil et les
+  informations techniques habituelles envoyées lors du chargement d'une image. Aucune de vos
   photos n'est utilisée.</p>
 
   <h2>4. Ce que nous ne collectons pas</h2>
@@ -134,7 +139,13 @@
 
   <h2>5. Traitement par l'IA</h2>
   <p>Les fonctionnalités d'IA sont traitées par OpenAI pour le compte de Cuvera, via nos propres
-  serveurs : l'application ne communique jamais directement avec OpenAI. Chaque requête ne
+  serveurs : l'application ne communique jamais directement avec OpenAI. <strong>Rien n'est
+  transmis à OpenAI sans votre accord.</strong> La première fois que vous utilisez une fonction
+  d'IA (un accord, une fiche de vin, la lecture d'une étiquette, une dégustation guidée ou
+  Camille), un court message indique OpenAI et ce qui est transmis, et vous choisissez
+  <em>Accepter et continuer</em> ou <em>Plus tard</em>. Vous pouvez changer d'avis à tout moment
+  dans <em>Réglages → Fonctions d'IA</em> ; tant qu'elles sont désactivées, rien n'est transmis à
+  OpenAI et les fonctions d'IA ne sont pas disponibles. Chaque requête ne
   contient que ce dont la réponse a besoin : par exemple le plat, le vin, votre message à Camille
   ou la photo de l'étiquette. Cuvera ne demande pas à OpenAI de conserver les requêtes ou les
   réponses pour les consulter plus tard. OpenAI peut conserver le contenu des requêtes, y compris
@@ -160,6 +171,8 @@
     d'e-mail). GitHub enregistre l'adresse IP des visiteurs à des fins de sécurité. Le site
     n'utilise ni cookies ni outils d'analyse.</li>
   </ul>
+  <p>Vivino n'est pas un prestataire de Cuvera et n'a conclu aucun accord avec nous ; votre
+  appareil charge les photos de bouteilles depuis ses serveurs, comme décrit à la section 3.</p>
 
   <h2>7. Transferts internationaux</h2>
   <p>Votre compte et vos contenus sont conservés dans l'Union européenne. Lorsque vous utilisez une
@@ -176,7 +189,7 @@
 
   <h2>8. Bases légales</h2>
   <ul>
-    <li><strong>Exécution du contrat</strong> — gestion de votre compte et fourniture des fonctionnalités que vous demandez.</li>
+    <li><strong>Exécution du contrat</strong> — gestion de votre compte et fourniture des fonctionnalités que vous demandez, y compris les fonctions d'IA une fois que vous avez accepté leur utilisation (section 5).</li>
     <li><strong>Consentement</strong> — localisation et notifications facultatives, chacune retirable à tout moment.</li>
     <li><strong>Intérêt légitime</strong> — sécurité du service et prévention des abus, y compris les limites de requêtes et les journaux techniques et de sécurité.</li>
   </ul>
@@ -207,14 +220,15 @@
   sessions de dégustation, vos imports de tableur (y compris les lignes d'origine), vos accords
   enregistrés, votre région, vos préférences, votre activité dans l'application et vos
   enregistrements de connexion. <span id="apple-revocation">Si vous vous êtes connecté avec Apple,
-  la suppression de votre compte ne retire pas encore automatiquement Cuvera de votre compte
-  Apple. Vous pouvez le faire vous-même à tout moment : sur votre iPhone, ouvrez <em>Réglages →
-  votre nom → Se connecter avec Apple</em>, choisissez Cuvera et suivez les étapes pour arrêter
-  d'utiliser « Se connecter avec Apple ».</span> Les copies figurant dans les journaux de courte durée de nos prestataires
+  l'app vous demande de confirmer avec Apple avant de supprimer votre compte, puis demande à Apple
+  de retirer automatiquement Cuvera de votre compte Apple. Si Apple ne confirme pas ce retrait,
+  l'app vous le signale, et vous pouvez le faire vous-même à tout moment : sur votre iPhone,
+  ouvrez <em>Réglages → votre nom → Se connecter avec Apple</em>, choisissez Cuvera, puis
+  touchez <em>Supprimer</em> et suivez les étapes à l'écran.</span> Les copies figurant dans les journaux de courte durée de nos prestataires
   et dans les sauvegardes de la base de données (section 9) ne sont pas supprimées par
   anticipation ; elles expirent selon leur calendrier habituel. Le cache partagé d'images de
-  bouteilles, qui ne contient que le nom d'un vin, son producteur et le lien de l'image et n'est
-  rattaché à aucun compte, est conservé.</p>
+  bouteilles, qui contient l'identité d'un vin (nom, producteur, millésime, cépage, couleur) ainsi
+  que le lien et la source de l'image, et n'est rattaché à aucun compte, est conservé.</p>
 
   <h2>11. Vos droits</h2>
   <p>Sous réserve du droit applicable, vous disposez des droits d'accès, de rectification,
